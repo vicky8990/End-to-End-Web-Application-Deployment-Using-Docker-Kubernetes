@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: webapp-deployment
+spec:
+  replicas: 1
+  selector:                      # <‑‑ REQUIRED
+    matchLabels:
+      app: webapp
+  template:
+    metadata:
+      labels:                    # <‑‑ MUST match selector
+        app: webapp
+    spec:
+      containers:
+        - name: webapp
+          image: venkateshshetty/mywebapp
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 80
